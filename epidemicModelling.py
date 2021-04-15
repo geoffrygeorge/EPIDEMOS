@@ -1423,23 +1423,3 @@ if menu == 'COVID-19 DASHBOARD':
                             height = 500)
     
         st.plotly_chart(deceased_fig, use_container_width = True)
-    
-
-
-
-
-        
-   
-    
-
-
-        
-
-
-    
-    
-
-
-
-
-
