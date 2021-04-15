@@ -19,7 +19,6 @@ from streamlit_lottie import st_lottie # see below
 import plotly.express as px # see below
 import pydeck as pdk
 import matplotlib
-import codecs
 matplotlib.use("agg") # see below
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
