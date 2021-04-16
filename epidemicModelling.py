@@ -58,7 +58,7 @@ model_func = Modelling
 st.set_page_config(
         page_title = "EPIDEMOS - An Epidemic Modelling Application",
         page_icon = ":globe_with_meridians:",
-        initial_sidebar_state = "expanded",
+        initial_sidebar_state = "collapsed",
         layout = "centered"
         )
 
