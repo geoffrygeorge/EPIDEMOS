@@ -24,8 +24,10 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import RendererAgg 
 _lock = RendererAgg.lock # see below
-from modelling import intro_lottie, sidebar_lottie, pop_value, sir_model, sird_model, seir_model, seirm_model, brr, eff_contact, population_list, country_clean, infected_clean, recovered_clean, deceased_clean # all the imported functions are defined in a separate python file called "modelling.py"
+from modelling import Modelling # importing all functions
 
+# assigning class to a variable
+model_func = Modelling
 
 ###### IMPORTANT INFORMATION ######
 
@@ -47,7 +49,7 @@ from modelling import intro_lottie, sidebar_lottie, pop_value, sir_model, sird_m
 
 # datasets are used from the github data repository for the 2019 Novel Coronavirus provided by Johns Hopkins University Center for Systems Science and Engineering(https://systems.jhu.edu/). The datasets used are not stored locally but rather taken directly from the repository's raw site(all the raw sites which holds the csv files are used in the 'modelling.py' python file wherein all the datasets have been explored and cleaned for optimum use with the application) which holds all the csv files therefore all automated updates for the data are directly reflected in the application itself as the source code is written to be suited to the regular automated updates - Refer https://github.com/CSSEGISandData/COVID-19/tree/web-data and https://github.com/CSSEGISandData/COVID-19
 
-# https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html?highlight=chained_assignment - according to the documentation provided by pandas, chained assignment is not recommended but for this application chained assignement has been used to work efficently and reduce additional code, '.loc' property is used to access labels in specific dataframes and then assigned to respective variables in the same line, for example in lines such as 346 and similar. The exection is flawless and the application is working as desired but pandas was not able to recognize this and threw 'SettingWithCopyWarning' in the terminal. Therofore in order to suppress this warning, the option is defined above after importing pandas.
+# https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html?highlight=chained_assignment - according to the documentation provided by pandas, chained assignment is not recommended but for this application chained assignement has been used to work efficently and reduce additional code, '.loc' property is used to access labels in specific dataframes and then assigned to respective variables in the same line, for example in lines such as 348 and similar. The exection is flawless and the application is working as desired but pandas was not able to recognize this and threw 'SettingWithCopyWarning' in the terminal. Therofore in order to suppress this warning, the option is defined above after importing pandas.
 
 
 ###### SCRIPT BEGINS FOLLOWING NECESSARY IMPORTS ######
@@ -65,7 +67,7 @@ st.set_page_config(
 with st.sidebar.beta_container():
 
     lottie_url = "https://assets3.lottiefiles.com/packages/lf20_lywlupuu.json"
-    lottie_sidebar = sidebar_lottie(lottie_url)
+    lottie_sidebar = model_func.sidebar_lottie(lottie_url)
     st_lottie(lottie_sidebar, height = 60)
 
 
@@ -104,7 +106,7 @@ if menu == "INTRO":
 
             # lottie animation for the main intro page
             lottie_url = "https://assets3.lottiefiles.com/packages/lf20_CXxysN.json"
-            lottie_corona = intro_lottie(lottie_url)
+            lottie_corona = model_func.intro_lottie(lottie_url)
             st_lottie(lottie_corona)
 
 
@@ -233,7 +235,7 @@ elif menu == "SIR MODEL":
                                 key='sir')
 
         # beta
-        contact_rate = eff_contact(eff_con)
+        contact_rate = model_func.eff_contact(eff_con)
 
         rec = st.slider('Recovery Rate(gamma)', 
                                 min_value = 1, 
@@ -274,18 +276,18 @@ elif menu == "SIR MODEL":
 
             st.markdown(u'▶ If R\u2080 < 1, the infectious population will decrease')
 
-            r_sir = brr(contact_rate,recovery_rate)
+            r_sir = model_func.brr(contact_rate,recovery_rate)
             st.info(u"The R\u2080 value of the current SIR Model is, {:.2f}".format(r_sir))
 
     
         # calculation of differertial equations
-        ret = odeint(sir_model,
+        ret = odeint(model_func.sir_model,
                     [susceptible, infected, recovered], days,
                     args = (total_pop, contact_rate, recovery_rate))
         S, I, R = ret.T
 
         # plotting the results 
-        value = pop_value(pop)
+        value = model_func.pop_value(pop)
 
         with _lock:
             sir_fig = Figure()
@@ -333,14 +335,14 @@ elif menu == "SIR MODEL":
             st.markdown("<p style = 'text-align: justify'>The plot shown below consists of model generated Infected data and its corresponding covid-19 data and a similar approach is done for the Recovered data.</p>", unsafe_allow_html = True)
 
         # calling the respective functions containing the final datasets and storing the returned data to respective variables  
-        country_clean = country_clean()
-        infected_clean = infected_clean()
-        recovered_clean = recovered_clean()
+        country_clean = model_func.country_clean()
+        infected_clean = model_func.infected_clean()
+        recovered_clean = model_func.recovered_clean()
         
         # creating a selectbox to choose the desired country
         country_list = container.selectbox('Choose country', country_clean['Country'].unique(), index = 180)
         population = int(country_clean["Population"].loc[country_clean["Country"] == country_list])
-        st.sidebar.write('▶ The population of',country_list,'is {:,}'.format(population))
+        st.sidebar.write('▶ The population of',country_list,'= {:,}'.format(population))
 
         # initial infected value for the SIR model
         infected_df = infected_clean.loc[infected_clean["Country"] == country_list]
@@ -381,7 +383,7 @@ elif menu == "SIR MODEL":
                                     key = 'sir_rw1')
 
             # beta
-            contact_rate = eff_contact(eff_con)
+            contact_rate = model_func.eff_contact(eff_con)
 
             rec = st.slider('Recovery Rate(gamma)', 
                                     min_value = 1, 
@@ -403,14 +405,14 @@ elif menu == "SIR MODEL":
 
         
             # calculation of differertial equations
-            ret = odeint(sir_model,
+            ret = odeint(model_func.sir_model,
                         [susceptible, initial_infected, initial_recovered], days,
                         args = (population, contact_rate, recovery_rate))
             S, I, R = ret.T
         
             
             # Plotting  
-            value = pop_value(population)
+            value = model_func.pop_value(population)
 
             with _lock:
                 sir_rw_fig = Figure()
@@ -594,7 +596,7 @@ elif menu == "SIR-D MODEL":
                                 key='sird')
 
         # beta
-        contact_rate = eff_contact(eff_con)
+        contact_rate = model_func.eff_contact(eff_con)
 
         rec = st.slider('Recovery Rate(gamma)', 
                                 min_value = 1, 
@@ -648,17 +650,17 @@ elif menu == "SIR-D MODEL":
 
             st.markdown(u'▶ If R\u2080 < 1, the infectious population will decrease')
 
-            r_sird = brr(contact_rate,recovery_rate)
+            r_sird = model_func.brr(contact_rate,recovery_rate)
             st.info(u"The R\u2080 value of the current SIR-D Model is, {:.2f}".format(r_sird))
     
         # calculation of differertial equations
-        ret = odeint(sird_model,
+        ret = odeint(model_func.sird_model,
                     [susceptible, infected, recovered, deceased], days,
                     args = (total_pop, contact_rate, recovery_rate, deceased_rate))
         S, I, R, D = ret.T
 
         # plotting the results  
-        value = pop_value(pop)
+        value = model_func.pop_value(pop)
 
         with _lock:
             sird_fig = Figure()
@@ -704,18 +706,18 @@ elif menu == "SIR-D MODEL":
 
             st.markdown("<p style = 'text-align: justify'>The SIR-D MODEL generated plot above is based on the complete access provided to the end-user and changes according to the parameters entered or changed by the user. Comparing the covid-19 statistical data with the model generated data would provide with an interesting insight concerning theoritical and actual values.</p>", unsafe_allow_html = True)
 
-            st.markdown("<p style = 'text-align: justify'>The plot shown below consists of model generated Infected data and its corresponding covid-19 data and a similar approach is done for the Recovered and Deceased data.</p>", unsafe_allow_html = True)
+            st.markdown("<p style = 'text-align: justify'>The plot shown below consists of model generated Infected data and its corresponding covid-19 data and a similar approach is done for the Recovered data and the Deceased data.</p>", unsafe_allow_html = True)
 
         # calling the respective functions containing the final datasets and storing the returned data to respective variables  
-        country_clean = country_clean()
-        infected_clean = infected_clean()
-        recovered_clean = recovered_clean()
-        deceased_clean = deceased_clean()
+        country_clean = model_func.country_clean()
+        infected_clean = model_func.infected_clean()
+        recovered_clean = model_func.recovered_clean()
+        deceased_clean = model_func.deceased_clean()
         
         # creating a selectbox to choose the desired country
         country_list = container.selectbox('Choose country', country_clean['Country'].unique(), index = 180)
         population = int(country_clean["Population"].loc[country_clean["Country"] == country_list])
-        st.sidebar.write('▶ The population of',country_list,'is {:,}'.format(population))
+        st.sidebar.write('▶ The population of',country_list,'= {:,}'.format(population))
 
         # initial infected value for the SIR-D model
         infected_df = infected_clean.loc[infected_clean["Country"] == country_list]
@@ -763,7 +765,7 @@ elif menu == "SIR-D MODEL":
                                     key = 'sird_rw1')
 
             # beta
-            contact_rate = eff_contact(eff_con)
+            contact_rate = model_func.eff_contact(eff_con)
 
             rec = st.slider('Recovery Rate(gamma)', 
                                     min_value = 1, 
@@ -797,14 +799,14 @@ elif menu == "SIR-D MODEL":
 
         
             # Use differential equations magic with our population
-            ret = odeint(sird_model,
+            ret = odeint(model_func.sird_model,
                         [susceptible, initial_infected, initial_recovered, initial_deceased], days,
                         args = (population, contact_rate, recovery_rate, deceased_rate))
             S, I, R, D = ret.T
         
             
             # Plotting  
-            value = pop_value(population)
+            value = model_func.pop_value(population)
 
             with _lock:
                 sird_rw_fig = Figure()
@@ -1001,7 +1003,7 @@ elif menu == "SEIR MODEL":
                                 help = 'Select the number of contacts(per day)',
                                 key='seir')
         # beta
-        contact_rate = eff_contact(eff_con)
+        contact_rate = model_func.eff_contact(eff_con)
 
         rec_infect = st.slider('Recovery Rate(gamma)', 
                                 min_value = 1, 
@@ -1043,17 +1045,17 @@ elif menu == "SEIR MODEL":
 
             st.markdown(u'▶ If R\u2080 < 1, the infectious population will decrease')
 
-            r_seir = brr(contact_rate,recovery_rate)
+            r_seir = model_func.brr(contact_rate,recovery_rate)
             st.info(u"The R\u2080 value of the current SEIR Model is, {:.2f}".format(r_seir))
 
         # calculation of differertial equations
-        ret = odeint(seir_model,
+        ret = odeint(model_func.seir_model,
                     [susceptible, exposed, infected, recovered], days,
                     args = (total_pop, expose_rate, contact_rate, recovery_rate))
         S, E, I, R = ret.T
 
         # plotting the results
-        value = pop_value(pop)
+        value = model_func.pop_value(pop)
 
         with _lock:
             seir_fig = Figure()
@@ -1250,7 +1252,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
                                 help = 'Select the number of contacts(per day)',
                                 key='seir_m')
         # beta
-        contact_rate = eff_contact(eff_con)
+        contact_rate = model_func.eff_contact(eff_con)
 
         rec_infect = st.slider('Recovery Rate(gamma)', 
                                 min_value = 1, 
@@ -1292,17 +1294,17 @@ elif menu == "SEIR MODEL(MITIGATION)":
 
             st.markdown(u'▶ If R\u2080 < 1, the infectious population will decrease')
             
-            r_seirm = brr(contact_rate,recovery_rate)
+            r_seirm = model_func.brr(contact_rate,recovery_rate)
             st.info(u"The R\u2080 value of the current SEIR Model(Mitigation) is, {:.2f}".format(r_seirm))
 
         # Use differential equations magic with our population
-        ret = odeint(seirm_model,
+        ret = odeint(model_func.seirm_model,
                     [susceptible, exposed, infected, recovered], days,
                     args = (m_control, total_pop, expose_rate, contact_rate, recovery_rate))
         S, E, I, R = ret.T
 
         # plotting the results   
-        value = pop_value(pop)
+        value = model_func.pop_value(pop)
 
         with _lock:
             seirm_fig = Figure()
@@ -1350,11 +1352,11 @@ if menu == 'COVID-19 DASHBOARD':
 
         st.header('Covid-19 Map View')
         
-        map_data = country_clean()
+        map_data = model_func.country_clean()
         st.map(map_data, zoom = 1)
         
         # calling the respective functions containing the final datasets and storing the returned data to respective variables  
-        country_data = country_clean()
+        country_data = model_func.country_clean()
         sorted_infected_country = country_data.sort_values('Confirmed', ascending = False)
         sorted_recovered_country = country_data.sort_values('Recovered', ascending = False)
         sorted_deceased_country = country_data.sort_values('Deaths', ascending = False)
