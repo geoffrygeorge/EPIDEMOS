@@ -49,7 +49,7 @@ model_func = Modelling
 
 # datasets are used from the github data repository for the 2019 Novel Coronavirus provided by Johns Hopkins University Center for Systems Science and Engineering(https://systems.jhu.edu/). The datasets used are not stored locally but rather taken directly from the repository's raw site(all the raw sites which holds the csv files are used in the 'modelling.py' python file wherein all the datasets have been explored and cleaned for optimum use with the application) which holds all the csv files therefore all automated updates for the data are directly reflected in the application itself as the source code is written to be suited to the regular automated updates - Refer https://github.com/CSSEGISandData/COVID-19/tree/web-data and https://github.com/CSSEGISandData/COVID-19
 
-# https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html?highlight=chained_assignment - according to the documentation provided by pandas, chained assignment is not recommended but for this application chained assignement has been used to work efficently and reduce additional code, '.loc' property is used to access labels in specific dataframes and then assigned to respective variables in the same line, for example in lines such as 348 and similar. The exection is flawless and the application is working as desired but pandas was not able to recognize this and threw 'SettingWithCopyWarning' in the terminal. Therofore in order to suppress this warning, the option is defined above after importing pandas.
+# https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html?highlight=chained_assignment - according to the documentation provided by pandas, chained assignment is not recommended but for this application chained assignement has been used to work efficently and reduce additional code, '.loc' property is used to access labels in specific dataframes and then assigned to respective variables in the same line, for example in lines such as 350 and similar. The exection is flawless and the application is working as desired but pandas was not able to recognize this and threw 'SettingWithCopyWarning' in the terminal. Therofore in order to suppress this warning, the option is defined above after importing pandas.
 
 
 ###### SCRIPT BEGINS FOLLOWING NECESSARY IMPORTS ######
@@ -299,7 +299,9 @@ elif menu == "SIR MODEL":
             ax.set_xlabel('Time in days')
             ax.set_ylabel('Population in 1000s')
             ax.set_ylim(0,value)
-            ax.grid(b=True, which='both', c='k', lw=0.2, ls='-')
+            ax.minorticks_on()
+            ax.tick_params(axis='x', which='minor')
+            ax.grid(b=True, which='major', c='k', lw=0.2, ls='-')
             sir_fig.patch.set_facecolor('w')
             sir_fig.patch.set_alpha(0.7)
             ax.patch.set_edgecolor('black')
@@ -427,7 +429,9 @@ elif menu == "SIR MODEL":
                 ax.set_xlabel('Time in days')
                 ax.set_ylabel('Population in 1000s')
                 ax.set_ylim(0,value)
-                ax.grid(b=True, which='both', c='k', lw=0.2, ls='-')
+                ax.minorticks_on()
+                ax.tick_params(axis='x', which='minor')
+                ax.grid(b=True, which='major', c='k', lw=0.2, ls='-')
                 sir_rw_fig.patch.set_facecolor('w')
                 sir_rw_fig.patch.set_alpha(0.7)
                 legend = ax.legend()
@@ -673,7 +677,9 @@ elif menu == "SIR-D MODEL":
             ax.set_xlabel('Time in days')
             ax.set_ylabel('Population in 1000s')
             ax.set_ylim(0,value)
-            ax.grid(b=True, which='both', c='k', lw=0.2, ls='-')
+            ax.minorticks_on()
+            ax.tick_params(axis='x', which='minor')
+            ax.grid(b=True, which='major', c='k', lw=0.2, ls='-')
             sird_fig.patch.set_facecolor('w')
             sird_fig.patch.set_alpha(0.7)
             ax.patch.set_edgecolor('black')
@@ -824,7 +830,9 @@ elif menu == "SIR-D MODEL":
                 ax.set_xlabel('Time in days')
                 ax.set_ylabel('Population in 1000s')
                 ax.set_ylim(0,value)
-                ax.grid(b=True, which='both', c='k', lw=0.2, ls='-')
+                ax.minorticks_on()
+                ax.tick_params(axis='x', which='minor')
+                ax.grid(b=True, which='major', c='k', lw=0.2, ls='-')
                 sird_rw_fig.patch.set_facecolor('w')
                 sird_rw_fig.patch.set_alpha(0.7)
                 legend = ax.legend()
@@ -1068,7 +1076,9 @@ elif menu == "SEIR MODEL":
             ax.set_xlabel('Time in days')
             ax.set_ylabel('Population in 1000s')
             ax.set_ylim(0,value)
-            ax.grid(b=True, which='both', c='k', lw=0.2, ls='-')
+            ax.minorticks_on()
+            ax.tick_params(axis='x', which='minor')
+            ax.grid(b=True, which='major', c='k', lw=0.2, ls='-')
             seir_fig.patch.set_facecolor('w')
             seir_fig.patch.set_alpha(0.7)
             ax.patch.set_edgecolor('black')
@@ -1317,7 +1327,9 @@ elif menu == "SEIR MODEL(MITIGATION)":
             ax.set_xlabel('Time in days')
             ax.set_ylabel('Population in 1000s')
             ax.set_ylim(0,value)
-            ax.grid(b=True, which='both', c='k', lw=0.2, ls='-')
+            ax.minorticks_on()
+            ax.tick_params(axis='x', which='minor')
+            ax.grid(b=True, which='major', c='k', lw=0.2, ls='-')
             seirm_fig.patch.set_facecolor('w')
             seirm_fig.patch.set_alpha(0.7)
             ax.patch.set_edgecolor('black')
