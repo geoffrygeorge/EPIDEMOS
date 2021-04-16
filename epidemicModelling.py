@@ -49,7 +49,7 @@ model_func = Modelling
 
 # datasets are used from the github data repository for the 2019 Novel Coronavirus provided by Johns Hopkins University Center for Systems Science and Engineering(https://systems.jhu.edu/). The datasets used are not stored locally but rather taken directly from the repository's raw site(all the raw sites which holds the csv files are used in the 'modelling.py' python file wherein all the datasets have been explored and cleaned for optimum use with the application) which holds all the csv files therefore all automated updates for the data are directly reflected in the application itself as the source code is written to be suited to the regular automated updates - Refer https://github.com/CSSEGISandData/COVID-19/tree/web-data and https://github.com/CSSEGISandData/COVID-19
 
-# https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html?highlight=chained_assignment - according to the documentation provided by pandas, chained assignment is not recommended but for this application chained assignement has been used to work efficently and reduce additional code, '.loc' property is used to access labels in specific dataframes and then assigned to respective variables in the same line, for example in lines such as 350 and similar. The exection is flawless and the application is working as desired but pandas was not able to recognize this and threw 'SettingWithCopyWarning' in the terminal. Therofore in order to suppress this warning, the option is defined above after importing pandas.
+# https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html?highlight=chained_assignment - according to the documentation provided by pandas, chained assignment is not recommended but for this application chained assignment has been used to work efficiently and reduce additional code, '.loc' property is used to access labels in specific dataframes and then assigned to respective variables in the same line, for example in lines such as 350 and similar. The execution is flawless and the application is working as desired but pandas was not able to recognize this and threw 'SettingWithCopyWarning' in the terminal. Therefore in order to suppress this warning, the option is defined above after importing pandas.
 
 
 ###### SCRIPT BEGINS FOLLOWING NECESSARY IMPORTS ######
@@ -209,7 +209,7 @@ elif menu == "SIR MODEL":
 
         with sir_slider:
 
-            st.markdown(r'The controls below provide accessibilty to the important parameters: number of days, beta($\beta$) and gamma($\gamma$)')
+            st.markdown(r'The controls below provide accessibility to the important parameters: number of days, beta($\beta$) and gamma($\gamma$)')
 
             st.markdown('▶ Number of days describes the time period')
 
@@ -245,7 +245,7 @@ elif menu == "SIR MODEL":
                                 help='Select the number of days(mean recovery rate = 1/number of days',
                                 key='sir')
 
-        # gammma
+        # gamma
         recovery_rate = 1/rec
 
 
@@ -280,7 +280,7 @@ elif menu == "SIR MODEL":
             st.info(u"The R\u2080 value of the current SIR Model is, {:.2f}".format(r_sir))
 
     
-        # calculation of differertial equations
+        # calculation of differential equations
         ret = odeint(model_func.sir_model,
                     [susceptible, infected, recovered], days,
                     args = (total_pop, contact_rate, recovery_rate))
@@ -332,7 +332,7 @@ elif menu == "SIR MODEL":
 
         with sir_rw_help:
 
-            st.markdown("<p style = 'text-align: justify'>The SIR MODEL generated plot above is based on the complete access provided to the end-user and changes according to the parameters entered or changed by the user. Comparing the covid-19 statistical data with the model generated data would provide with an interesting insight concerning theoritical and actual values.</p>", unsafe_allow_html = True)
+            st.markdown("<p style = 'text-align: justify'>The SIR MODEL generated plot above is based on the complete access provided to the end-user and changes according to the parameters entered or changed by the user. Comparing the covid-19 statistical data with the model generated data would provide with an interesting insight concerning theoretical and actual values.</p>", unsafe_allow_html = True)
 
             st.markdown("<p style = 'text-align: justify'>The plot shown below consists of model generated Infected data and its corresponding covid-19 data and a similar approach is done for the Recovered data.</p>", unsafe_allow_html = True)
 
@@ -395,7 +395,7 @@ elif menu == "SIR MODEL":
                                     help='Select the number of days(mean recovery rate = 1/number of days',
                                     key = 'sir_rw2')
 
-            # gammma
+            # gamma
             recovery_rate = 1/rec
 
             # People apart from the infected and recovered
@@ -406,14 +406,14 @@ elif menu == "SIR MODEL":
             days = range(0, day_value)
 
         
-            # calculation of differertial equations
+            # calculation of differential equations
             ret = odeint(model_func.sir_model,
                         [susceptible, initial_infected, initial_recovered], days,
                         args = (population, contact_rate, recovery_rate))
             S, I, R = ret.T
         
             
-            # Plotting  
+            # plotting the results
             value = model_func.pop_value(population)
 
             with _lock:
@@ -571,7 +571,7 @@ elif menu == "SIR-D MODEL":
 
         with sird_slider:
 
-            st.markdown(r'The controls below provide accessibilty to the important parameters: number of days, beta($\beta$) and gamma($\gamma$)')
+            st.markdown(r'The controls below provide accessibility to the important parameters: number of days, beta($\beta$) and gamma($\gamma$)')
 
             st.markdown('▶ Number of days describes the time period')
 
@@ -610,7 +610,7 @@ elif menu == "SIR-D MODEL":
                                 help='Select the number of days(mean recovery rate = 1/number of days',
                                 key='sird')
 
-        # gammma
+        # gamma
         recovery_rate = 1/rec
 
         dec = st.slider('Deceased Rate(sigma)', 
@@ -657,7 +657,7 @@ elif menu == "SIR-D MODEL":
             r_sird = model_func.brr(contact_rate,recovery_rate)
             st.info(u"The R\u2080 value of the current SIR-D Model is, {:.2f}".format(r_sird))
     
-        # calculation of differertial equations
+        # calculation of differential equations
         ret = odeint(model_func.sird_model,
                     [susceptible, infected, recovered, deceased], days,
                     args = (total_pop, contact_rate, recovery_rate, deceased_rate))
@@ -710,7 +710,7 @@ elif menu == "SIR-D MODEL":
 
         with sird_rw_help:
 
-            st.markdown("<p style = 'text-align: justify'>The SIR-D MODEL generated plot above is based on the complete access provided to the end-user and changes according to the parameters entered or changed by the user. Comparing the covid-19 statistical data with the model generated data would provide with an interesting insight concerning theoritical and actual values.</p>", unsafe_allow_html = True)
+            st.markdown("<p style = 'text-align: justify'>The SIR-D MODEL generated plot above is based on the complete access provided to the end-user and changes according to the parameters entered or changed by the user. Comparing the covid-19 statistical data with the model generated data would provide with an interesting insight concerning theoretical and actual values.</p>", unsafe_allow_html = True)
 
             st.markdown("<p style = 'text-align: justify'>The plot shown below consists of model generated Infected data and its corresponding covid-19 data and a similar approach is done for the Recovered data and the Deceased data.</p>", unsafe_allow_html = True)
 
@@ -781,7 +781,7 @@ elif menu == "SIR-D MODEL":
                                     help = 'Select the number of days(mean recovery rate = 1/number of days',
                                     key = 'sird_rw2')
 
-            # gammma
+            # gamma
             recovery_rate = 1/rec
 
             dec = st.slider('Deceased Rate(sigma)', 
@@ -811,7 +811,7 @@ elif menu == "SIR-D MODEL":
             S, I, R, D = ret.T
         
             
-            # Plotting  
+            # plotting the results
             value = model_func.pop_value(population)
 
             with _lock:
@@ -894,7 +894,7 @@ elif menu == "SEIR MODEL":
 
         st.markdown('The rate processes are modelled as follows:')
 
-        st.markdown(r'▪️ ${\Large \frac {\beta\it S\it I}{\it N}}$ is the rate at which the susecptible population encounters the infected population resulting in transmission of the disease.')
+        st.markdown(r'▪️ ${\Large \frac {\beta\it S\it I}{\it N}}$ is the rate at which the susceptible population encounters the infected population resulting in transmission of the disease.')
 
         st.markdown(r'▪️ ${\large \alpha\it E}$ is the rate at which the exposed population becomes infective.')
 
@@ -974,7 +974,7 @@ elif menu == "SEIR MODEL":
 
         with seir_slider:
 
-            st.markdown(r'The controls below provide accessibilty to the important parameters: number of days, alpha($\alpha$), beta($\beta$) and gamma($\gamma$)')
+            st.markdown(r'The controls below provide accessibility to the important parameters: number of days, alpha($\alpha$), beta($\beta$) and gamma($\gamma$)')
 
             st.markdown('▶ Number of days describes the time period')
 
