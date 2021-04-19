@@ -147,7 +147,7 @@ elif menu == "SIR MODEL":
 
         st.markdown(r'▪️ ${\Large \frac {\beta\it S\it I}{\it N}}$ is the rate at which the susceptible population encounters the infected population resulting in transmission of the disease.')
 
-        st.markdown(r'▪️ ${\large \gamma\it I}$ is the rate at which the infected population recovers and becomes resistent to further infection.')
+        st.markdown(r'▪️ ${\large \gamma\it I}$ is the rate at which the infected population recovers and becomes resistant to further infection.')
 
         st.markdown("<p style = 'text-align: justify'>A model for the spread of an infectious disease in a uniform population is given by the deterministic SIR equations.</p>" , unsafe_allow_html = True)
         
@@ -492,7 +492,7 @@ elif menu == "SIR-D MODEL":
 
         st.markdown(r'▪️ ${\Large \frac {\beta\it S\it I}{\it N}}$ is the rate at which the susceptible population encounters the infected population resulting in transmission of the disease.')
 
-        st.markdown(r'▪️ ${\large \gamma\it I}$ is the rate at which the infected population recovers and becomes resistent to further infection.')
+        st.markdown(r'▪️ ${\large \gamma\it I}$ is the rate at which the infected population recovers and becomes resistant to further infection.')
 
         st.markdown(r'▪️ ${\large \sigma\it I}$ is the rate at which the infected population is not able to reach the recovered stage and are deceased.')
 
@@ -898,7 +898,7 @@ elif menu == "SEIR MODEL":
 
         st.markdown(r'▪️ ${\large \alpha\it E}$ is the rate at which the exposed population becomes infective.')
 
-        st.markdown(r'▪️ ${\large \gamma\it I}$ is the rate at which the infected population recovers and becomes resistent to further infection.')
+        st.markdown(r'▪️ ${\large \gamma\it I}$ is the rate at which the infected population recovers and becomes resistant to further infection.')
 
         st.markdown("<p style = 'text-align: justify'>A model for the spread of an infectious disease in a uniform population is given by the deterministic SEIR equations.</p>" , unsafe_allow_html = True)
 
@@ -1138,7 +1138,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
 
         st.markdown(r'▪️ ${\large \alpha\it E}$ is the rate at which the exposed population becomes infective.')
 
-        st.markdown(r'▪️ ${\large \gamma\it I}$ is the rate at which the infected population recovers and becomes resistent to further infection.')
+        st.markdown(r'▪️ ${\large \gamma\it I}$ is the rate at which the infected population recovers and becomes resistant to further infection.')
 
         st.markdown("<p style = 'text-align: justify'>A model for the spread of an infectious disease in a uniform population is given by the deterministic SEIR equations with a mitigation control parameter.</p>" , unsafe_allow_html = True)
 
