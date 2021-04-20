@@ -323,7 +323,7 @@ elif menu == "SIR MODEL":
     container = st.sidebar.beta_container()
 
     container.header('COVID-19 STATISTICS COMPARISON')
-    rw = container.checkbox('View 🔍')
+    rw = container.checkbox('View 🔍', key = 'sir_cb')
 
     if rw:
         st.header('SIR Model Data v/s Covid-19 Data')
@@ -701,7 +701,7 @@ elif menu == "SIR-D MODEL":
     container = st.sidebar.beta_container()
 
     container.header('COVID-19 STATISTICS COMPARISON')
-    rw = container.checkbox('View 🔍')
+    rw = container.checkbox('View 🔍', key = 'sird_cb')
 
     if rw:
         st.header('SIR-D Model Data v/s Covid-19 Data')
