@@ -9,6 +9,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import requests
+import io
 import time
 from population import Population_Data # importing population data
 
@@ -47,8 +48,9 @@ class Modelling:
     @staticmethod
     @st.cache(show_spinner=False)
     def country_clean():
-        path = r'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/cases_country.csv'
-        country_data = pd.read_csv(path)
+        url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/cases_country.csv'
+        country_content = requests.get(url).content
+        country_data = pd.read_csv(io.StringIO(country_content.decode('utf-8')))
         country_data = country_data.rename(columns={'Country_Region': 'Country', 'Long_': 'lon', 'Lat': 'lat'})
         country_data = country_data[(country_data.Country != 'Diamond Princess') & (country_data.Country != 'MS Zaandam')]
         country_data = country_data.reset_index(drop=True)
@@ -66,8 +68,9 @@ class Modelling:
     @staticmethod
     @st.cache(show_spinner=False)
     def infected_clean():
-        path = r'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
-        infected_data = pd.read_csv(path)
+        url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
+        infected_content = requests.get(url).content
+        infected_data = pd.read_csv(io.StringIO(infected_content.decode('utf-8')))
         infected_data = infected_data.rename(columns={'Country/Region': 'Country'})
         infected_data = infected_data[(infected_data.Country != 'Diamond Princess') & (infected_data.Country != 'MS Zaandam')]
         infected_data = infected_data.reset_index(drop=True)
@@ -84,8 +87,9 @@ class Modelling:
     @staticmethod
     @st.cache(show_spinner=False)
     def recovered_clean():
-        path = r'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv'
-        recovered_data = pd.read_csv(path)
+        url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv'
+        recovered_content = requests.get(url).content
+        recovered_data = pd.read_csv(io.StringIO(recovered_content.decode('utf-8')))
         recovered_data = recovered_data.rename(columns={'Country/Region': 'Country'})
         recovered_data = recovered_data[(recovered_data.Country != 'Diamond Princess') & (recovered_data.Country != 'MS Zaandam')]
         recovered_data = recovered_data.reset_index(drop=True)
@@ -102,8 +106,9 @@ class Modelling:
     @staticmethod
     @st.cache(show_spinner=False)
     def deceased_clean():
-        path = r'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
-        deceased_data = pd.read_csv(path)
+        url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
+        deceased_content = requests.get(url).content
+        deceased_data = pd.read_csv(io.StringIO(deceased_content.decode('utf-8')))
         deceased_data = deceased_data.rename(columns={'Country/Region': 'Country'})
         deceased_data = deceased_data[(deceased_data.Country != 'Diamond Princess') & (deceased_data.Country != 'MS Zaandam')]
         deceased_data = deceased_data.reset_index(drop=True)
