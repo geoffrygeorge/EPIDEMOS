@@ -21,7 +21,7 @@ class Modelling:
 
     # function defined for sidebar menu animation
     @staticmethod
-    @st.cache(show_spinner=False)
+    @st.cache(show_spinner = False)
     def sidebar_lottie(url: str):
         r = requests.get(url)
         if r.status_code != 200:
@@ -31,7 +31,7 @@ class Modelling:
 
     # function defined for main intro page animation
     @staticmethod
-    @st.cache(show_spinner=False)
+    @st.cache(show_spinner = False)
     def intro_lottie(url: str):
         r = requests.get(url)
         if r.status_code != 200:
@@ -46,7 +46,7 @@ class Modelling:
     # function defined for cleaning the dataset - cases_country.csv
     # FIRST DATA FRAME(COUNTRY DATA)
     @staticmethod
-    @st.cache(show_spinner=False)
+    @st.cache(show_spinner = False, ttl = 60*15)
     def country_clean():
         url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/cases_country.csv'
         country_content = requests.get(url).content
@@ -66,7 +66,7 @@ class Modelling:
     # function defined for cleaning the dataset - time_series_covid19_confirmed_global.csv
     # SECOND DATA FRAME(INFECTED POPULATION DATA)
     @staticmethod
-    @st.cache(show_spinner=False)
+    @st.cache(show_spinner = False, ttl = 60*15)
     def infected_clean():
         url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
         infected_content = requests.get(url).content
@@ -85,7 +85,7 @@ class Modelling:
     # function defined for cleaning the dataset - time_series_covid19_recovered_global.csv
     # THIRD DATA FRAME(RECOVERED POPULATION DATA)
     @staticmethod
-    @st.cache(show_spinner=False)
+    @st.cache(show_spinner = False, ttl = 60*15)
     def recovered_clean():
         url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv'
         recovered_content = requests.get(url).content
@@ -104,7 +104,7 @@ class Modelling:
     # function defined for cleaning the dataset - time_series_covid19_deaths_global.csv
     # FOURTH DATA FRAME(DECEASED POPULATION DATA)
     @staticmethod
-    @st.cache(show_spinner=False)
+    @st.cache(show_spinner = False, ttl = 60*15)
     def deceased_clean():
         url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
         deceased_content = requests.get(url).content
