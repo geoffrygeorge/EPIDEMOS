@@ -100,6 +100,7 @@ class Population_Data:
             10203134:"Jordan",
             18776707:"Kazakhstan",
             53771296:"Kenya",
+            121172:"Kiribati",
             51269185:"Korea, South",
             1767881:"Kosovo",
             4270571:"Kuwait",
