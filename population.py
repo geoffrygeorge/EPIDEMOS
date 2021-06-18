@@ -142,6 +142,7 @@ class Population_Data:
             5421241:"Norway",
             5106626:"Oman",
             220892340:"Pakistan",
+            18178:"Palau",
             4314767:"Panama",
             8947024:"Papua New Guinea",
             7132538:"Paraguay",
