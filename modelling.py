@@ -52,7 +52,7 @@ class Modelling:
         country_content = requests.get(url).content
         country_data = pd.read_csv(io.StringIO(country_content.decode('utf-8')))
         country_data = country_data.rename(columns={'Country_Region': 'Country', 'Long_': 'lon', 'Lat': 'lat'})
-        country_data = country_data[(country_data.Country != 'Diamond Princess') & (country_data.Country != 'MS Zaandam')]
+        country_data = country_data[(country_data.Country != 'Diamond Princess') & (country_data.Country != 'MS Zaandam') & (country_data.Country != 'Summer Olympics 2020')]
         country_data = country_data.reset_index(drop=True)
         country_data['Population'] = population_data.population_list()
         country_data[['lon', 'lat']] = country_data[['lon', 'lat']].apply(pd.to_numeric)
@@ -72,7 +72,7 @@ class Modelling:
         infected_content = requests.get(url).content
         infected_data = pd.read_csv(io.StringIO(infected_content.decode('utf-8')))
         infected_data = infected_data.rename(columns={'Country/Region': 'Country'})
-        infected_data = infected_data[(infected_data.Country != 'Diamond Princess') & (infected_data.Country != 'MS Zaandam')]
+        infected_data = infected_data[(infected_data.Country != 'Diamond Princess') & (infected_data.Country != 'MS Zaandam') & (infected_data.Country != 'Summer Olympics 2020')]
         infected_data = infected_data.reset_index(drop=True)
         infected_data = infected_data.drop(['Province/State','Lat', 'Long'], axis=1)
         infected_data['Country'] = infected_data['Country'].replace('Taiwan*', 'Taiwan')
@@ -91,7 +91,7 @@ class Modelling:
         recovered_content = requests.get(url).content
         recovered_data = pd.read_csv(io.StringIO(recovered_content.decode('utf-8')))
         recovered_data = recovered_data.rename(columns={'Country/Region': 'Country'})
-        recovered_data = recovered_data[(recovered_data.Country != 'Diamond Princess') & (recovered_data.Country != 'MS Zaandam')]
+        recovered_data = recovered_data[(recovered_data.Country != 'Diamond Princess') & (recovered_data.Country != 'MS Zaandam') & (recovered_data.Country != 'Summer Olympics 2020')]
         recovered_data = recovered_data.reset_index(drop=True)
         recovered_data = recovered_data.drop(['Province/State','Lat', 'Long'], axis=1)
         recovered_data['Country'] = recovered_data['Country'].replace('Taiwan*', 'Taiwan')
@@ -110,7 +110,7 @@ class Modelling:
         deceased_content = requests.get(url).content
         deceased_data = pd.read_csv(io.StringIO(deceased_content.decode('utf-8')))
         deceased_data = deceased_data.rename(columns={'Country/Region': 'Country'})
-        deceased_data = deceased_data[(deceased_data.Country != 'Diamond Princess') & (deceased_data.Country != 'MS Zaandam')]
+        deceased_data = deceased_data[(deceased_data.Country != 'Diamond Princess') & (deceased_data.Country != 'MS Zaandam') & (deceased_data.Country != 'Summer Olympics 2020')]
         deceased_data = deceased_data.reset_index(drop=True)
         deceased_data = deceased_data.drop(['Province/State','Lat', 'Long'], axis=1)
         deceased_data['Country'] = deceased_data['Country'].replace('Taiwan*', 'Taiwan')
