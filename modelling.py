@@ -128,7 +128,7 @@ class Modelling:
     @staticmethod
     @st.cache
     def sir_model(state, t, N, beta, gamma):
-        S, I, R = state
+        S, I, R = state # R is accessed during runtime
         # change in S population over time
         dSdt = -beta * S * I / N
         # change in I population over time
@@ -142,7 +142,7 @@ class Modelling:
     @staticmethod
     @st.cache
     def sird_model(state, t, N, beta, gamma, sigma):
-        S, I, R, D = state
+        S, I, R, D = state # R and D are accessed during runtime
         # change in S population over time
         dSdt = -beta * S * I / N
         # change in I population over time
@@ -158,7 +158,7 @@ class Modelling:
     @staticmethod
     @st.cache
     def seir_model(state, t, N, alpha, beta, gamma):
-        S, E, I, R = state
+        S, E, I, R = state # R is accessed during runtime
         # change in S population over time
         dSdt = -beta * S * I / N
         # change in E population over Time
@@ -174,7 +174,7 @@ class Modelling:
     @staticmethod
     @st.cache
     def seirm_model(state, t, u, N, alpha, beta, gamma):
-        S, E, I, R = state
+        S, E, I, R = state # R is accessed during runtime
         # a mitigation factor 'u' is introduced and has been discussed in the main python file
         # change in S population over time
         dSdt = -(1-u) * beta * S * I / N
