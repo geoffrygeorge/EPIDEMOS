@@ -7,10 +7,10 @@
 ###### NECESSARY IMPORTS ######
 import streamlit as st
 import pandas as pd
-import numpy as np
+#import numpy as np
 import requests
 import io
-import time
+#import time
 from population import Population_Data # importing population data
 
 # assigning class to a variable
@@ -53,14 +53,17 @@ class Modelling:
         country_data = pd.read_csv(io.StringIO(country_content.decode('utf-8')))
         country_data = country_data.rename(columns={'Country_Region': 'Country', 'Long_': 'lon', 'Lat': 'lat'})
         country_data = country_data[(country_data.Country != 'Diamond Princess') & (country_data.Country != 'MS Zaandam') & (country_data.Country != 'Summer Olympics 2020')]
-        country_data = country_data.reset_index(drop=True)
-        country_data['Population'] = population_data.population_list()
         country_data[['lon', 'lat']] = country_data[['lon', 'lat']].apply(pd.to_numeric)
         country_data = country_data.fillna(0)
-        country_data['Country'] = country_data['Country'].replace('Korea, South', 'Korea (South)')
         country_data['Country'] = country_data['Country'].replace('Taiwan*', 'Taiwan')
+        country_data['Country'] = country_data['Country'].replace('Korea, South', 'Korea (South)')
         country_data['Country'] = country_data['Country'].replace('US', 'United States')
-
+        country_data['Country'] = country_data['Country'].apply(str)
+        country_data = country_data.sort_values(by = ['Country'])
+        country_data = country_data.reset_index(drop=True)
+        country_population_data = population_data.population_list()
+        country_data = pd.concat([country_data, country_population_data], axis=1)
+       
         return country_data
 
     # function defined for cleaning the dataset - time_series_covid19_confirmed_global.csv
