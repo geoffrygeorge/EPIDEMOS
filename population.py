@@ -20,53 +20,61 @@ class Population_Data:
         country_population_data.drop(country_population_data.loc[:, 'Yearly Change': 'World Share'].columns, axis = 1, inplace = True)
         country_population_data = country_population_data.rename(columns={'Country (or dependency)': 'Country', 'Population (2020)': 'Population'})
 
-        # removing unnecessary countries
-        country_population_data = country_population_data[(country_population_data.Country != 'American Samoa') 
-        & (country_population_data.Country != 'Anguilla') 
-        & (country_population_data.Country != 'Aruba') 
-        & (country_population_data.Country != 'Bermuda') 
-        & (country_population_data.Country != 'British Virgin Islands') 
-        & (country_population_data.Country != 'Caribbean Netherlands') 
-        & (country_population_data.Country != 'Cayman Islands') 
-        & (country_population_data.Country != 'Channel Islands')
-        & (country_population_data.Country != 'Cook Islands') 
-        & (country_population_data.Country != 'Curaçao') 
-        & (country_population_data.Country != 'DR Congo') 
-        & (country_population_data.Country != 'Faeroe Islands') 
-        & (country_population_data.Country != 'Falkland Islands') 
-        & (country_population_data.Country != 'French Guiana')
-        & (country_population_data.Country != 'French Polynesia') 
-        & (country_population_data.Country != 'Gibraltar') 
-        & (country_population_data.Country != 'Greenland') 
-        & (country_population_data.Country != 'Guadeloupe') 
-        & (country_population_data.Country != 'Guam') 
-        & (country_population_data.Country != 'Hong Kong') 
-        & (country_population_data.Country != 'Isle of Man') 
-        & (country_population_data.Country != 'Macao') 
-        & (country_population_data.Country != 'Martinique') 
-        & (country_population_data.Country != 'Mayotte') 
-        & (country_population_data.Country != 'Montserrat') 
-        & (country_population_data.Country != 'Myanmar') 
-        & (country_population_data.Country != 'Nauru') 
-        & (country_population_data.Country != 'New Caledonia') 
-        & (country_population_data.Country != 'Niue') 
-        & (country_population_data.Country != 'North Korea') 
-        & (country_population_data.Country != 'Northern Mariana Islands') 
-        & (country_population_data.Country != 'Puerto Rico') 
-        & (country_population_data.Country != 'Réunion') 
-        & (country_population_data.Country != 'Saint Barthelemy') 
-        & (country_population_data.Country != 'Saint Helena') 
-        & (country_population_data.Country != 'Saint Martin') 
-        & (country_population_data.Country != 'Saint Pierre & Miquelon') 
-        & (country_population_data.Country != 'Sint Maarten') 
-        & (country_population_data.Country != 'Tokelau')
-        & (country_population_data.Country != 'Tonga')
-        & (country_population_data.Country != 'Turkmenistan')
-        & (country_population_data.Country != 'Turks and Caicos')
-        & (country_population_data.Country != 'Tuvalu')
-        & (country_population_data.Country != 'U.S. Virgin Islands')
-        & (country_population_data.Country != 'Wallis & Futuna')
-        & (country_population_data.Country != 'Western Sahara')]
+        # adding unnecessary countries
+        country_list = [
+            'American Samoa', 
+            'Anguilla', 
+            'Aruba', 
+            'Bermuda', 
+            'British Virgin Islands', 
+            'Caribbean Netherlands', 
+            'Cayman Islands', 
+            'Channel Islands', 
+            'Cook Islands', 
+            'Curaçao', 
+            'DR Congo', 
+            'Faeroe Islands', 
+            'Falkland Islands', 
+            'French Guiana', 
+            'French Polynesia', 
+            'Gibraltar', 
+            'Greenland', 
+            'Guadeloupe', 
+            'Guam', 
+            'Hong Kong', 
+            'Isle of Man', 
+            'Macao', 
+            'Martinique', 
+            'Mayotte', 
+            'Montserrat', 
+            'Myanmar', 
+            'Nauru', 
+            'New Caledonia', 
+            'Niue', 
+            'North Korea', 
+            'Northern Mariana Islands', 
+            'Puerto Rico', 
+            'Réunion', 
+            'Saint Barthelemy', 
+            'Saint Helena', 
+            'Saint Martin', 
+            'Saint Pierre & Miquelon', 
+            'Sint Maarten', 
+            'Tokelau', 
+            'Tonga', 
+            'Turkmenistan', 
+            'Turks and Caicos', 
+            'Tuvalu', 
+            'U.S. Virgin Islands', 
+            'Wallis & Futuna', 
+            'Western Sahara'
+            ]     
+
+        # loop to remove the above mentioned countries
+        i = 0
+        while i < len(country_list):
+            country_population_data = country_population_data[(country_population_data.Country != country_list[i])]
+            i += 1
 
         # renaming countries
         country_population_data["Country"] = country_population_data["Country"].replace(
