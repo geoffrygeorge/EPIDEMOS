@@ -8,7 +8,7 @@
 
 # all the required streamlit commands are referred from the official documentation - https://docs.streamlit.io/en/stable/
 
-# NECESSARY IMPORTS 
+# NECESSARY IMPORTS
 import streamlit as st
 import pandas as pd
 pd.options.mode.chained_assignment = None # see below
@@ -223,7 +223,7 @@ elif menu == "SIR MODEL":
                                 value = 150,
                                 step = 10,
                                 help='2 years in total',
-                                key='sir')        
+                                key='day_value_sir')        
    
 
         eff_con = st.slider('Contact Rate(beta)', 
@@ -232,7 +232,7 @@ elif menu == "SIR MODEL":
                                 value = 4, 
                                 step = 1,
                                 help='Select the number of contacts(per day)',
-                                key='sir')
+                                key='eff_con_sir')
 
         # beta
         contact_rate = model_func.eff_contact(eff_con)
@@ -243,7 +243,7 @@ elif menu == "SIR MODEL":
                                 value = 10, 
                                 step = 1,
                                 help='Select the number of days(mean recovery rate = 1/number of days',
-                                key='sir')
+                                key='rec_sir')
 
         # gamma
         recovery_rate = 1/rec
@@ -588,7 +588,7 @@ elif menu == "SIR-D MODEL":
                                 value = 150,
                                 step = 10,
                                 help='2 years in total',
-                                key='sird')        
+                                key='day_value_sird')        
    
 
         eff_con = st.slider('Contact Rate(beta)', 
@@ -597,7 +597,7 @@ elif menu == "SIR-D MODEL":
                                 value = 10, 
                                 step = 1,
                                 help='Select the number of contacts(per day)',
-                                key='sird')
+                                key='eff_con_sird')
 
         # beta
         contact_rate = model_func.eff_contact(eff_con)
@@ -608,7 +608,7 @@ elif menu == "SIR-D MODEL":
                                 value = 6, 
                                 step = 1,
                                 help='Select the number of days(mean recovery rate = 1/number of days',
-                                key='sird')
+                                key='rec_sird')
 
         # gamma
         recovery_rate = 1/rec
@@ -619,7 +619,7 @@ elif menu == "SIR-D MODEL":
                                 value = 10, 
                                 step = 1,
                                 help='Select the number of days(mean deceased rate = 1/number of days',
-                                key='sird')
+                                key='dec_sird')
 
         # sigma
         deceased_rate = 1/dec
@@ -990,7 +990,7 @@ elif menu == "SEIR MODEL":
                                 value = 150,
                                 step = 10,
                                 help = '2 years in total',
-                                key='seir')
+                                key='day_value_seir')
       
       
         exp_incu = st.slider('Expose Rate(alpha)', 
@@ -999,7 +999,7 @@ elif menu == "SEIR MODEL":
                                 value = 3, 
                                 step = 1,
                                 help = 'Select the number of days(mean expose rate = 1/number of days',
-                                key='seir')
+                                key='exp_incu_seir')
         # alpha
         expose_rate = 1/exp_incu
       
@@ -1009,7 +1009,7 @@ elif menu == "SEIR MODEL":
                                 value = 10, 
                                 step = 1,
                                 help = 'Select the number of contacts(per day)',
-                                key='seir')
+                                key='eff_con_seir')
         # beta
         contact_rate = model_func.eff_contact(eff_con)
 
@@ -1019,7 +1019,7 @@ elif menu == "SEIR MODEL":
                                 value = 5, 
                                 step = 1,
                                 help = 'Select the number of days(mean recovery rate = 1/number of days',
-                                key='seir')
+                                key='rec_infect_seir')
 
         # gammma 
         recovery_rate = 1/rec_infect
@@ -1232,7 +1232,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
                                 value = 0.0,
                                 step = 0.1,
                                 help = 'Select the effectiveness of mitigation measures',
-                                key='seir_m')
+                                key='m_control_seir_m')
       
 
         day_value = st.slider('Number of days',
@@ -1241,7 +1241,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
                                 value = 150,
                                 step = 10,
                                 help = '2 years in total',
-                                key='seir_m')
+                                key='day_value_seir_m')
       
       
         exp_incu = st.slider('Expose Rate(alpha)', 
@@ -1250,7 +1250,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
                                 value = 3, 
                                 step = 1,
                                 help = 'Select the number of days(mean exposed rate = 1/number of days',
-                                key='seir_m')
+                                key='exp_incu_seir_m')
         # alpha
         expose_rate = 1/exp_incu
       
@@ -1260,7 +1260,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
                                 value = 10, 
                                 step = 1,
                                 help = 'Select the number of contacts(per day)',
-                                key='seir_m')
+                                key='eff_con_seir_m')
         # beta
         contact_rate = model_func.eff_contact(eff_con)
 
@@ -1270,7 +1270,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
                                 value = 5, 
                                 step = 1,
                                 help = 'Select the number of days(mean recovery rate = 1/number of days',
-                                key='seir_m')
+                                key='rec_infect_seir_m')
 
         # gammma 
         recovery_rate = 1/rec_infect
