@@ -11,7 +11,7 @@
 # NECESSARY IMPORTS
 import streamlit as st
 import pandas as pd
-pd.options.mode.chained_assignment = None # see below
+#pd.options.mode.chained_assignment = None # see below
 import numpy as np
 import time
 from scipy.integrate import odeint
@@ -342,7 +342,8 @@ elif menu == "SIR MODEL":
         recovered_clean = model_func.recovered_clean()
         
         # creating a selectbox to choose the desired country
-        country_list = container.selectbox('Choose country', country_clean['Country'].unique(), index = 180)
+        country_options = country_clean['Country'].unique().tolist()
+        country_list = container.selectbox('Choose country', country_options, index = 180)
         population = int(country_clean["Population"].loc[country_clean["Country"] == country_list])
         st.sidebar.write('▶ The population of',country_list,'= {:,}'.format(population))
 
@@ -721,7 +722,8 @@ elif menu == "SIR-D MODEL":
         deceased_clean = model_func.deceased_clean()
         
         # creating a selectbox to choose the desired country
-        country_list = container.selectbox('Choose country', country_clean['Country'].unique(), index = 180)
+        country_options = country_clean['Country'].unique().tolist()
+        country_list = container.selectbox('Choose country', country_options, index = 180)
         population = int(country_clean["Population"].loc[country_clean["Country"] == country_list])
         st.sidebar.write('▶ The population of',country_list,'= {:,}'.format(population))
 
