@@ -33,7 +33,7 @@ class Modelling:
 
     # function defined for sidebar menu animation
     @staticmethod
-    # @st.cache(show_spinner = False)
+    @st.cache(show_spinner = False)
     def sidebar_lottie(filepath: str):
         with open(filepath, "r") as f:
             return json.load(f)
@@ -52,7 +52,7 @@ class Modelling:
 
     # function defined for sidebar menu animation
     @staticmethod
-    # @st.cache(show_spinner = False)
+    @st.cache(show_spinner = False)
     def intro_lottie(filepath: str):
         with open(filepath, "r") as f:
             return json.load(f)
