@@ -67,7 +67,7 @@ st.set_page_config(
 with st.sidebar.beta_container():
 
     # lottie_url = "https://assets3.lottiefiles.com/packages/lf20_lywlupuu.json"
-    lottie_local_path = "lottie_files\Gear.json"
+    lottie_local_path = "lottie_files/Gear.json"
     lottie_sidebar = model_func.sidebar_lottie(lottie_local_path)
     st_lottie(lottie_sidebar, height = 60)
 
@@ -107,7 +107,7 @@ if menu == "INTRO":
 
             # lottie animation for the main intro page
             # lottie_url = "https://assets3.lottiefiles.com/packages/lf20_CXxysN.json"
-            lottie_local_path = "lottie_files\Corona3D.json"
+            lottie_local_path = "lottie_files/Corona3D.json"
             lottie_corona = model_func.intro_lottie(lottie_local_path)
             st_lottie(lottie_corona)
 
