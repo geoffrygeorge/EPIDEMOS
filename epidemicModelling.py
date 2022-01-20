@@ -93,15 +93,28 @@ if menu == "INTRO":
         <style>
         .big-font {
             text-align: center;
-            padding-top: 20px;
-            font-size:80px;
+            padding-top: 5px;
+            font-size: 4vw;
             font-family: "Times New Roman", Times, serif;
         }
         </style>
         """, unsafe_allow_html = True)
 
         st.markdown('<p class="big-font">EPIDEMOS</p>', unsafe_allow_html = True)
-        st.markdown("<p style = 'text-align: center'>AN INTERACTIVE APPLICATION FOR MODELLING EPIDEMICS</p>", unsafe_allow_html = True)
+
+        st.markdown("""
+
+        <style>
+        .small-font {
+            text-align: center;
+            padding-top: 1px;
+            font-size: 0.9vw;
+            font-family: "Times New Roman", Times, serif;
+        }
+        </style>
+        """, unsafe_allow_html = True)
+
+        st.markdown('<p class="small-font">AN INTERACTIVE APPLICATION FOR MODELLING EPIDEMICS</p>', unsafe_allow_html = True)
 
         with st.beta_container():
 
