@@ -10,6 +10,7 @@ import pandas as pd
 #import numpy as np
 import requests
 import io
+import json
 #import time
 from population import Population_Data # importing population data
 
@@ -20,24 +21,42 @@ population_data = Population_Data
 class Modelling: 
 
     # function defined for sidebar menu animation
+    if False:
+        @staticmethod
+        @st.cache(show_spinner = False)
+        def sidebar_lottie(url: str):
+            r = requests.get(url)
+            if r.status_code != 200:
+                return None
+
+            return r.json()
+
+    # function defined for sidebar menu animation
     @staticmethod
     @st.cache(show_spinner = False)
-    def sidebar_lottie(url: str):
-        r = requests.get(url)
-        if r.status_code != 200:
-            return None
+    def sidebar_lottie(filepath: str):
+        with open(filepath, "r") as f:
+            return json.load(f)
 
-        return r.json()
 
     # function defined for main intro page animation
+    if False:
+        @staticmethod
+        @st.cache(show_spinner = False)
+        def intro_lottie(url: str):
+            r = requests.get(url)
+            if r.status_code != 200:
+                return None
+
+            return r.json()
+
+    # function defined for sidebar menu animation
     @staticmethod
     @st.cache(show_spinner = False)
-    def intro_lottie(url: str):
-        r = requests.get(url)
-        if r.status_code != 200:
-            return None
+    def intro_lottie(filepath: str):
+        with open(filepath, "r") as f:
+            return json.load(f)
 
-        return r.json()
 
     ###### DATA CLEANING ######
     # information about the datasets have been provided in the main python file
@@ -65,6 +84,9 @@ class Modelling:
         country_data = pd.concat([country_data, country_population_data], axis=1)
        
         return country_data
+
+    ################# delete columns based on their index number between the columns (8/5/21) containing zero values and the columns related to the recent day's data 
+    ################# and download the recent data using the file downloader
 
     # function defined for cleaning the dataset - time_series_covid19_confirmed_global.csv
     # SECOND DATA FRAME(INFECTED POPULATION DATA)
