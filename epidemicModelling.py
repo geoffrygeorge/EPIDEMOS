@@ -94,8 +94,8 @@ if menu == "INTRO":
         .big-font {
             text-align: center;
             padding-top: 5px;
-            font-size: 4vw;
-            font-family: "Times New Roman", Times, serif;
+            font-size: calc(0.80em + 8vmin);
+            font-family: "Arial, sans-serif;
         }
         </style>
         """, unsafe_allow_html = True)
@@ -108,8 +108,8 @@ if menu == "INTRO":
         .small-font {
             text-align: center;
             padding-top: 1px;
-            font-size: 0.9vw;
-            font-family: "Times New Roman", Times, serif;
+            font-size: calc(0.50em + 1vmin);
+            font-family: "Arial, sans-serif;
         }
         </style>
         """, unsafe_allow_html = True)
