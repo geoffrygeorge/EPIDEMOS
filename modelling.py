@@ -72,6 +72,7 @@ class Modelling:
         country_data = pd.read_csv(io.StringIO(country_content.decode('utf-8')))
         country_data = country_data.rename(columns={'Country_Region': 'Country', 'Long_': 'lon', 'Lat': 'lat'})
         country_data = country_data[(country_data.Country != 'Diamond Princess') & (country_data.Country != 'MS Zaandam') & (country_data.Country != 'Summer Olympics 2020')]
+        country_data = country_data.drop('ISO3', axis=1)
         country_data[['lon', 'lat']] = country_data[['lon', 'lat']].apply(pd.to_numeric)
         country_data = country_data.fillna(0)
         country_data['Country'] = country_data['Country'].replace('Taiwan*', 'Taiwan')
