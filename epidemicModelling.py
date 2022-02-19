@@ -64,7 +64,7 @@ st.set_page_config(
 
 
 # lottie animation for the sidebar menu
-with st.sidebar.beta_container():
+with st.sidebar.container():
 
     # lottie_url = "https://assets3.lottiefiles.com/packages/lf20_lywlupuu.json"
     lottie_local_path = "lottie_files/Gear.json"
@@ -77,7 +77,7 @@ st.sidebar.title("NAVIGATION")
 # defining various pages in the application
 main_menu = ['INTRO', 'SIR MODEL', 'SIR-D MODEL', 'SEIR MODEL', 'SEIR MODEL(MITIGATION)', 'COVID-19 DASHBOARD']
 
-with st.beta_container():
+with st.container():
 
     menu = st.sidebar.selectbox('Go to', main_menu) 
 
@@ -116,7 +116,7 @@ if menu == "INTRO":
 
         st.markdown('<p class="small-font">AN INTERACTIVE APPLICATION FOR MODELLING EPIDEMICS</p>', unsafe_allow_html = True)
 
-        with st.beta_container():
+        with st.container():
 
             # lottie animation for the main intro page
             # lottie_url = "https://assets3.lottiefiles.com/packages/lf20_CXxysN.json"
@@ -135,7 +135,7 @@ elif menu == "SIR MODEL":
     st.subheader('(S)usceptible - (I)nfected - (R)ecovered')
 
     # about SIR model
-    sir_help = st.beta_expander('About SIR Model ❓')
+    sir_help = st.expander('About SIR Model ❓')
 
     with sir_help:
 
@@ -185,7 +185,7 @@ elif menu == "SIR MODEL":
         st.latex(r'''\large {\frac {\it dr}{\it dt} = \gamma\it i}''')
 
     # setting up controls for the SIR model
-    with st.sidebar.beta_container():
+    with st.sidebar.container():
 
         st.title('PARAMETER CONTROLS')
 
@@ -194,7 +194,7 @@ elif menu == "SIR MODEL":
                                 step = 1000,
                                 key = 'sir_p')
 
-        sir_info = st.beta_expander('Note ✒️')
+        sir_info = st.expander('Note ✒️')
 
         with sir_info:
 
@@ -220,7 +220,7 @@ elif menu == "SIR MODEL":
             with st.spinner('The recovered population values cannot be greater than or equal to the total population'):
                 time.sleep(4)
         
-        sir_slider = st.beta_expander('Note ✒️')
+        sir_slider = st.expander('Note ✒️')
 
         with sir_slider:
 
@@ -279,7 +279,7 @@ elif menu == "SIR MODEL":
 
 
         # calculating the basic reproduction ratio of SIR model
-        sir_r = st.beta_expander('Basic Reproduction Ratio')
+        sir_r = st.expander('Basic Reproduction Ratio')
 
         with sir_r:
             
@@ -335,7 +335,7 @@ elif menu == "SIR MODEL":
 
     # covid-19 statistics comparison
     st.sidebar.markdown("<p></p>", unsafe_allow_html = True)
-    container = st.sidebar.beta_container()
+    container = st.sidebar.container()
 
     container.header('COVID-19 STATISTICS COMPARISON')
     rw = container.checkbox('View 🔍', key = 'sir_cb')
@@ -343,7 +343,7 @@ elif menu == "SIR MODEL":
     if rw:
         st.header('SIR Model Data v/s Covid-19 Data')
          
-        sir_rw_help = st.beta_expander('About Covid-19 Statistics Comparison ❔')
+        sir_rw_help = st.expander('About Covid-19 Statistics Comparison ❔')
 
         with sir_rw_help:
 
@@ -388,7 +388,7 @@ elif menu == "SIR MODEL":
         recovered_tr = recovered_tr.to_numpy()
     
         # setting up necessary controls
-        with st.sidebar.beta_container():
+        with st.sidebar.container():
 
             st.subheader('CONTROLS')
 
@@ -454,11 +454,11 @@ elif menu == "SIR MODEL":
                 legend.get_frame().set_alpha(1.0)
                 ax.spines['bottom'].set_visible(False)
 
-        with st.beta_container():
+        with st.container():
 
             st.pyplot(sir_rw_fig, clear_figure = True)
 
-        data_frame_sir = st.beta_expander('View Covid-19 Statistical Data 📊')
+        data_frame_sir = st.expander('View Covid-19 Statistical Data 📊')
 
         with data_frame_sir:
             st.subheader('Country Population Data')
@@ -479,7 +479,7 @@ elif menu == "SIR-D MODEL":
     st.subheader('(S)usceptible - (I)nfected - (R)ecovered - (D)eceased')
 
     # about SIRD model
-    sird_help = st.beta_expander('About SIR-D Model ❓')
+    sird_help = st.expander('About SIR-D Model ❓')
 
     with sird_help:
 
@@ -537,7 +537,7 @@ elif menu == "SIR-D MODEL":
         st.latex(r'''\large {\frac {\it dd}{\it dt} = \sigma\it i}''')
 
     # setting up controls for the SIR-D model
-    with st.sidebar.beta_container():
+    with st.sidebar.container():
 
         st.title('PARAMETER CONTROLS')
 
@@ -547,7 +547,7 @@ elif menu == "SIR-D MODEL":
                                 step = 1000,
                                 key = 'sird_p')
 
-        sird_info = st.beta_expander('Note ✒️')
+        sird_info = st.expander('Note ✒️')
 
         with sird_info:
 
@@ -583,7 +583,7 @@ elif menu == "SIR-D MODEL":
             with st.spinner('The deceased population values cannot be greater than or equal to the total population'):
                 time.sleep(4)
         
-        sird_slider = st.beta_expander('Note ✒️')
+        sird_slider = st.expander('Note ✒️')
 
         with sird_slider:
 
@@ -658,7 +658,7 @@ elif menu == "SIR-D MODEL":
 
 
         # calculating the basic reproduction ratio of SIRD model
-        sird_r = st.beta_expander('Basic Reproduction Ratio')
+        sird_r = st.expander('Basic Reproduction Ratio')
 
         with sird_r:
             
@@ -714,7 +714,7 @@ elif menu == "SIR-D MODEL":
 
     # covid-19 statistics comparison
     st.sidebar.markdown("<p></p>", unsafe_allow_html = True)
-    container = st.sidebar.beta_container()
+    container = st.sidebar.container()
 
     container.header('COVID-19 STATISTICS COMPARISON')
     rw = container.checkbox('View 🔍', key = 'sird_cb')
@@ -722,7 +722,7 @@ elif menu == "SIR-D MODEL":
     if rw:
         st.header('SIR-D Model Data v/s Covid-19 Data')
 
-        sird_rw_help = st.beta_expander('About Covid-19 Statistics Comparison ❔')
+        sird_rw_help = st.expander('About Covid-19 Statistics Comparison ❔')
 
         with sird_rw_help:
 
@@ -775,7 +775,7 @@ elif menu == "SIR-D MODEL":
         deceased_tr = deceased_tr.to_numpy()
 
         # setting up necessary controls
-        with st.sidebar.beta_container():
+        with st.sidebar.container():
 
             st.subheader('CONTROLS')
 
@@ -856,11 +856,11 @@ elif menu == "SIR-D MODEL":
                 legend.get_frame().set_alpha(1.0)
                 ax.spines['bottom'].set_visible(False)
 
-        with st.beta_container():
+        with st.container():
 
             st.pyplot(sird_rw_fig, clear_figure = True)
 
-        data_frame_sird = st.beta_expander('View Covid-19 Statistical Data 📊')
+        data_frame_sird = st.expander('View Covid-19 Statistical Data 📊')
 
         with data_frame_sird:
             st.subheader('Country Population Data')
@@ -884,7 +884,7 @@ elif menu == "SEIR MODEL":
     st.subheader('(S)usceptible - (E)xposed - (I)nfected - (R)ecovered)')
 
     # about SEIR model
-    seir_help = st.beta_expander('About SEIR Model ❓')
+    seir_help = st.expander('About SEIR Model ❓')
 
     with seir_help:
         
@@ -942,7 +942,7 @@ elif menu == "SEIR MODEL":
         st.latex(r'''\large {\frac {\it dr}{\it dt} = \gamma\it i}''')
 
     # setting up controls for the SEIR model
-    with st.sidebar.beta_container():
+    with st.sidebar.container():
 
         st.title('PARAMETER CONTROLS')
 
@@ -951,7 +951,7 @@ elif menu == "SEIR MODEL":
                                 step = 1000,
                                 key = 'seir_p')
 
-        seir_info = st.beta_expander('Note ✒️')
+        seir_info = st.expander('Note ✒️')
 
         with seir_info:
 
@@ -987,7 +987,7 @@ elif menu == "SEIR MODEL":
             with st.spinner('The recovered population values cannot be greater than or equal to the total population'):
                 time.sleep(4)
 
-        seir_slider = st.beta_expander('Note ✒️')
+        seir_slider = st.expander('Note ✒️')
 
         with seir_slider:
 
@@ -1058,7 +1058,7 @@ elif menu == "SEIR MODEL":
         days = range(0, day_value)
 
         # calculating the basic reproduction ratio of SEIR model
-        seir_r = st.beta_expander('Basic Reproduction Ratio')
+        seir_r = st.expander('Basic Reproduction Ratio')
 
         with seir_r:
             
@@ -1124,7 +1124,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
     st.subheader('(S)usceptible - (E)xposed - (I)nfected - (R)ecovered) with Mitigation Control')
 
     # about SEIR model with mitigation control
-    seirm_help = st.beta_expander('About SEIR Model with Mitigation Control ❓')
+    seirm_help = st.expander('About SEIR Model with Mitigation Control ❓')
 
     with seirm_help:
         
@@ -1182,7 +1182,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
         st.latex(r'''\large {\frac {\it dr}{\it dt} = \gamma\it i}''')
 
     # setting up controls for the SEIR model with mitigation
-    with st.sidebar.beta_container():
+    with st.sidebar.container():
 
         st.title('PARAMETER CONTROLS')
 
@@ -1191,7 +1191,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
                                 step = 1000,
                                 key = 'seir_p')
 
-        seirm_info = st.beta_expander('Note ✒️')
+        seirm_info = st.expander('Note ✒️')
 
         with seirm_info:
 
@@ -1227,7 +1227,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
             with st.spinner('The recovered population values cannot be greater than or equal to the total population'):
                 time.sleep(4)
 
-        seirm_slider = st.beta_expander('Note ✒️')
+        seirm_slider = st.expander('Note ✒️')
 
         with seirm_slider:
 
@@ -1309,7 +1309,7 @@ elif menu == "SEIR MODEL(MITIGATION)":
         days = range(0, day_value)
 
         # differential equations
-        seirm_r = st.beta_expander('Basic Reproduction Ratio')
+        seirm_r = st.expander('Basic Reproduction Ratio')
 
         with seirm_r:
             
@@ -1369,11 +1369,11 @@ elif menu == "SEIR MODEL(MITIGATION)":
 
 #### COVID-19 DASHBOARD ####
 if menu == 'COVID-19 DASHBOARD':
-    container = st.sidebar.beta_container()
+    container = st.sidebar.container()
 
     container.title('CONTROLS')
 
-    with st.beta_container():
+    with st.container():
 
         st.title('COVID-19 DASHBOARD')
 
