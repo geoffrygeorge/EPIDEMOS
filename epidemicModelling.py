@@ -111,7 +111,6 @@ if menu == "INTRO":
             padding-top: 1px;
             font-size: calc(0.50em + 1vmin);
             font-family: sans-serif;
-            font-weight: bold;
         }
         </style>
         """, unsafe_allow_html = True)
