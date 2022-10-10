@@ -1,2 +1,2 @@
-# Epidemic_Modelling
+# EPIDEMOS
 An interactive application for modelling epidemics
